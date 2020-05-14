@@ -14,19 +14,21 @@ Para visualizar a criação de um pedido inicial, rode em sua máquina `npm run 
 
 Ao criar a transação, é necessário passar um parâmetro chamado `postback_url`, que é bem explicativo. Após enviar a transação, os intervalos de comunicação que a `pagar.me` fará com essa URL são, em minutos, 1 (três vezes), 5 (três vezes), 60 (25 vezes).
 
+URL de exemplo para verificação: [https://requestbin.com/r/en5wqhoqn81sv/1bu6gPG1NrfGFJTgG1o7sWACBmZ](https://requestbin.com/r/en5wqhoqn81sv/1bu6gPG1NrfGFJTgG1o7sWACBmZ)
+
 ### Formato de devolução
 
 Quando a postback_url é passada, a transação é retornada com status processing, e as mudanças de status são enviadas para o seu servidor na URL de postback. Isso é feito através de um request HTTP POST por `x-www-form-urlencoded` com os seguintes parâmetros:
 
-| Parâmetro | Descrição        |
-|-----------|------------------|
-| id        | ID da transação. |
-| event     | A qual evento o postback se refere. No caso de transações: transaction_status_changed. Já para subscriptions: subscription_status_changed.                 |
-| old_status  | Status anterior da transação. |
-| desired_status  | Status ideal para objetos deste tipo, em um fluxo normal, onde autorização e captura são feitos com sucesso, por exemplo. |
-| current_status  | Status para o qual efetivamente mudou.  |
-| object  | Qual o tipo do objeto referido. No caso de transações o valor é 'transaction'. No caso de assinaturas, o valor é 'subscription' |
-| transaction | Possui todas as informações do objeto. |
+| Parâmetro      | Descrição                                                                                                                                  |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| id             | ID da transação.                                                                                                                           |
+| event          | A qual evento o postback se refere. No caso de transações: transaction_status_changed. Já para subscriptions: subscription_status_changed. |
+| old_status     | Status anterior da transação.                                                                                                              |
+| desired_status | Status ideal para objetos deste tipo, em um fluxo normal, onde autorização e captura são feitos com sucesso, por exemplo.                  |
+| current_status | Status para o qual efetivamente mudou.                                                                                                     |
+| object         | Qual o tipo do objeto referido. No caso de transações o valor é 'transaction'. No caso de assinaturas, o valor é 'subscription'            |
+| transaction    | Possui todas as informações do objeto.                                                                                                     |
 
 ## Exemplos
 
