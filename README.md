@@ -16,7 +16,7 @@ Ao criar a transação, é necessário passar um parâmetro chamado `postback_ur
 
 ### Formato de devolução
 
-Quando a postback_url é passada, a transação é retornada com status processing, e as mudanças de status são enviadas para o seu servidor na URL de postback. Isso é feito através de um request HTTP POST com os seguintes parâmetros:
+Quando a postback_url é passada, a transação é retornada com status processing, e as mudanças de status são enviadas para o seu servidor na URL de postback. Isso é feito através de um request HTTP POST por `x-www-form-urlencoded` com os seguintes parâmetros:
 
 | Parâmetro | Descrição        |
 |-----------|------------------|
