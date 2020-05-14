@@ -10,9 +10,27 @@ Para a integração, é necessário apenas o módulo que eles disponibilizam no 
 
 Para visualizar a criação de um pedido inicial, rode em sua máquina `npm run create-transaction` após instalar os pacotes com `npm install`.
 
-## Exemplos:
+## Postback
 
-### Autenticando o client:
+Ao criar a transação, é necessário passar um parâmetro chamado `postback_url`, que é bem explicativo. Após enviar a transação, os intervalos de comunicação que a `pagar.me` fará com essa URL são, em minutos, 1 (três vezes), 5 (três vezes), 60 (25 vezes).
+
+### Formato de devolução
+
+Quando a postback_url é passada, a transação é retornada com status processing, e as mudanças de status são enviadas para o seu servidor na URL de postback. Isso é feito através de um request HTTP POST com os seguintes parâmetros:
+
+| Parâmetro | Descrição        |
+|-----------|------------------|
+| id        | ID da transação. |
+| event     | A qual evento o postback se refere. No caso de transações: transaction_status_changed. Já para subscriptions: subscription_status_changed.                 |
+| old_status  | Status anterior da transação. |
+| desired_status  | Status ideal para objetos deste tipo, em um fluxo normal, onde autorização e captura são feitos com sucesso, por exemplo. |
+| current_status  | Status para o qual efetivamente mudou.  |
+| object  | Qual o tipo do objeto referido. No caso de transações o valor é 'transaction'. No caso de assinaturas, o valor é 'subscription' |
+| transaction | Possui todas as informações do objeto. |
+
+## Exemplos
+
+### Autenticando o client
 
 ```javascript
 import pagarme from "pagarme";
@@ -22,7 +40,7 @@ const connectClient = () => {
 };
 ```
 
-### Enviando uma transação:
+### Enviando uma transação
 
 ```javascript
 import pagarme from "pagarme";
@@ -32,7 +50,7 @@ const createTransaction = (client, transaction) => {
 };
 ```
 
-### Exemplo de JSON para transação:
+### Exemplo de JSON para transação
 
 ```javascript
 const transaction = {
