@@ -1,0 +1,16 @@
+{
+  "name": "modulo-integracao-pagarme",
+  "version": "1.0.0",
+  "description": "Realizar uma simples integração ao SDK disponibilizado do pagar.me.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-transaction": "node src/index.js"
+  },
+  "author": "Matheus Barão Fiorin",
+  "license": "ISC",
+  "dependencies": {
+    "pagarme": "^4.8.0"
+  },
+  "type": "module"
+}
